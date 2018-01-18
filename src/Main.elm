@@ -1,7 +1,7 @@
 module Main exposing (..)
 
 import Html exposing (Html, text, div, h1, img)
-import Html.Attributes exposing (src)
+import Html.Attributes exposing (src, class, classList)
 import WebSocket
 import Dict exposing (Dict)
 import Json.Decode exposing (..)
@@ -130,31 +130,25 @@ update msg model =
 ---- VIEW ----
 
 
-growText grow =
-    case grow of
-        STAY ->
-            " stay"
-
-        UP ->
-            " up"
-
-        DOWN ->
-            " down"
+viewGrow grow =
+    div [ class "instrument__grow", classList [ ( "instrument__grow--up", grow == UP ), ( "instrument__grow--down", grow == DOWN ) ] ]
+        []
 
 
 viewInstrument : Instrument -> Html Msg
 viewInstrument instrument =
-    div []
-        [ div [] [ text instrument.name ]
-        , div []
-            [ text "BID: "
-            , text <| toString <| instrument.bid
-            , text (growText instrument.bidGrow)
+    div [ class "instrument" ]
+        [ div [ class "instrument__top" ]
+            [ div [ class "instrument__name" ] [ text instrument.name ]
             ]
-        , div []
-            [ text "ASK: "
-            , text <| toString <| instrument.ask
-            , text (growText instrument.askGrow)
+        , div [ class "instrument__values" ]
+            [ viewGrow instrument.askGrow
+            , div [ class "instrument__text" ]
+                [ text <| toString <| instrument.bid
+                , text " / "
+                , text <| toString <| instrument.ask
+                ]
+            , viewGrow instrument.bidGrow
             ]
         ]
 
@@ -162,8 +156,7 @@ viewInstrument instrument =
 view : Model -> Html Msg
 view model =
     div []
-        [ img [ src "/logo.svg" ] []
-        , h1 []
+        [ div [ class "instrument__list" ]
             (model.instruments
                 |> Dict.toList
                 |> List.map Tuple.second
