@@ -1,15 +1,64 @@
+* {
+  box-sizing: border-box;;
+}
 body {
-  font-family: 'Source Sans Pro', 'Trebuchet MS', 'Lucida Grande', 'Bitstream Vera Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  padding: 0;
   margin: 0;
   text-align: center;
   color: #293c4b;
 }
 
-h1 {
-  font-size: 30px;
+.instrument__list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 16px;
+  background-color: #fff2de;
 }
 
-img {
-  margin: 20px 0;
-  max-width: 200px;
+.instrument {
+  padding-bottom: 16px;
+  margin-right: 16px;
+  margin-left: 16px;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+
+.instrument__top {
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.instrument__name {
+  font-weight: bold;
+}
+
+.instrument__values {
+  display: flex;
+  flex-wrap: nowrap;
+
+}
+
+.instrument__text {
+  min-width: 150px;
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+.instrument__grow {
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.instrument__grow--up {
+  background-image: url(/icons8-sort-up-48.png);
+}
+
+.instrument__grow--down {
+  background-image: url(/icons8-sort-down-48.png);
 }
