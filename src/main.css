@@ -3,6 +3,7 @@
 }
 body {
   font-family: 'Roboto', sans-serif;
+  font-weight: 24px;
   padding: 0;
   margin: 0;
   text-align: center;
@@ -29,17 +30,24 @@ body {
   margin-bottom: 4px;
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
 }
 
 
 .instrument__name {
   font-weight: bold;
+  font-size: 20px;
 }
 
 .instrument__values {
   display: flex;
   flex-wrap: nowrap;
+  align-items: center;
+}
 
+.instrument__spread {
+  color: #7d8184;
+  font-weight: 20px;
 }
 
 .instrument__text {

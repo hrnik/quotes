@@ -35,6 +35,7 @@ type alias Instrument =
     , bidGrow : Grow
     , ask : Float
     , askGrow : Grow
+    , spread : String
     }
 
 
@@ -103,7 +104,7 @@ update msg model =
                                     (\instrument ->
                                         case Dict.get instrument.s model.instruments of
                                             Nothing ->
-                                                ( instrument.s, (Instrument instrument.s 0 STAY 0 STAY) )
+                                                ( instrument.s, (Instrument instrument.s 0 STAY 0 STAY "") )
 
                                             Just oldInstrument ->
                                                 let
@@ -119,7 +120,7 @@ update msg model =
                                                     askGrow =
                                                         isGrow oldInstrument.ask newAsk
                                                 in
-                                                    ( instrument.s, (Instrument instrument.s newBid bidGrow newAsk askGrow) )
+                                                    ( instrument.s, (Instrument instrument.s newBid bidGrow newAsk askGrow instrument.spr) )
                                     )
                                 |> Dict.fromList
             in
@@ -140,6 +141,7 @@ viewInstrument instrument =
     div [ class "instrument" ]
         [ div [ class "instrument__top" ]
             [ div [ class "instrument__name" ] [ text instrument.name ]
+            , div [ class "instrument__spread" ] [ text ("Sprd " ++ instrument.spread) ]
             ]
         , div [ class "instrument__values" ]
             [ viewGrow instrument.askGrow
@@ -157,9 +159,9 @@ view : Model -> Html Msg
 view model =
     div []
         [ div [ class "instrument__list" ]
-            (model.instruments
-                |> Dict.toList
-                |> List.map Tuple.second
+            (subscribeInsrtrumentNames
+                |> List.map (\x -> Dict.get x model.instruments)
+                |> List.filterMap identity
                 |> List.map viewInstrument
             )
         ]
