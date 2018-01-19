@@ -1,0 +1,21 @@
+{
+  "name": "quotes",
+  "version": "1.0.0",
+  "description": "This project is bootstrapped with [Create Elm App](https://github.com/halfzebra/create-elm-app).",
+  "scripts": {
+    "build": "elm-app build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hrnik/quotes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hrnik/quotes/issues"
+  },
+  "homepage": "https://github.com/hrnik/quotes#readme",
+  "devDependencies": {
+    "create-elm-app": "^1.10.2"
+  }
+}
