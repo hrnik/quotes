@@ -12,7 +12,7 @@ import Json.Decode exposing (..)
 
 subscribeInstrumentNames : List String
 subscribeInstrumentNames =
-    [ "EURUSD", "BTCUSD" ]
+    [ "EURUSD", "BTCUSD", "EURGBP", "USDJPY", "GBPUSD", "USDCHF", "USDCAD", "AUDUSD", "EURJPY", "EURCHF" ]
 
 
 type Grow
